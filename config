@@ -19,6 +19,7 @@ font pango:System San Francisco Display 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+#
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -36,19 +37,49 @@ set $urgent-bg-color 	 #E53935
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+for_window [class="Yad"] floating enable
+
+# Bind terminal open
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Set language layout
+exec --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
+
 # Start network manager
 exec --no-startup-id nm-applet
 
 # Setup sceen size
-exec ~/.screenlayout/screen-resolution.sh
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+exec --no-startup-id ~/.scripts/screen-resolution.sh
+
+bindsym $mod+Print exec shutter -f
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+o exec rofi -show run -lines 3 
+# start roffi drun (a program launcher)
+bindsym $mod+o exec rofi -show drun -lines 3 
+
+# Make the currently focused window a scratchpad 
+bindsym $mod+Shift+minus [class="Gnome-terminal"] move scratchpad
+
+# Show the Gnome-terminal scratchpad window
+bindsym $mod+minus [class="Gnome-terminal"] scratchpad show
+
+# Show the Google Keep scratchpad window
+#bindsym $mod+equal [title="Google Keep"] scratchpad show
+
+#for_window [title="Google Keep"] move scratchpad
+#for_window [title="Google Keep"] scratchpad show
+
+
+for_window [title="Google Play Music Desktop Player"] move scratchpad
+for_window [title="Google Play Music Desktop Player"] scratchpad show
+
+
+# Show the Terminal scratchpad window
+
+#Screen locker
+bindsym $mod+x exec --no-startup-id ~/bin/screen-lock
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -97,7 +128,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -105,17 +136,30 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# Set workspace variable
 set $workspace1 "1:Terminals"
 set $workspace2 "2:Browser"
 set $workspace3 "3:Ideas"
+set $workspace4 "4:Messages"
+set $workspace5 "5:Buffer"
+set $workspace6 "6:Virtual Machines"
+
+# Set workspaces output
+workspace $workspace1 output VGA-0
+workspace $workspace2 output VGA-0
+workspace $workspace3 output VGA-0
+workspace $workspace4 output VGA-0
+
+workspace $workspace5 output HDMI-0
+workspace $workspace6 output HDMI-0
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -132,6 +176,16 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+# set applications workspaces
+assign [class="Google-chrome"] $workspace2
+assign [class="Firefox"] $workspace2
+assign [class="jetbrains-idea"] $workspace3
+assign [class="TelegramDesktop"] $workspace4
+assign [class="Skype"] $workspace4
+assign [class="Slack"] $workspace4
+assign [class="VirtualBox Manager"] $workspace6
+assign [class="VirtualBox Machine"] $workspace6
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -165,8 +219,22 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+#Set modes
 bindsym $mod+r mode "resize"
 
+mode "application" {
+	bindsym v exec --no-startup-id virtualbox
+	bindsym m exec --no-startup-id google-play-music-desktop-player || [title="Google Play Music Desktop Player"] scratchpad show
+
+	# Show the Google Music player scratchpad window
+	bindsym $mod+m [title="Google Play Music Desktop Player"] scratchpad show
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+i mode "application"
 
 client.focused		$focused-color $focused-color $text-color #00ff00
 client.unfocused	$inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
@@ -176,7 +244,10 @@ client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-col
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command ~/bin/i3script.sh
+        status_command i3blocks
+#        status_command ~/bin/i3script.sh
+        tray_output primary
+#
 	position top
 
 	colors {
