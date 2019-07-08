@@ -1,0 +1,138 @@
+!Rxvt.font: xft:ubuntu mono:pixelsize=13
+!rxvt*termName: rxvt
+!rxvt*scrollBar: false
+!rxvt*matcher.button: 1
+!rxvt.transparent: false
+!rxvt.boldFont:
+!Xft*dpi: 96
+!Xft*antialias: true
+!Xft*hinting: true
+!Xft*hintstyle: hintfull
+!Xft*rgba: rgb
+!Rxvt*geometry: 85x20
+!*internalBorder: 23
+!Rxvt*fading: 0
+!Rxvt*tintColor: #ffffff
+!Rxvt*shading: 0
+!Rxvt*inheritPixmap: False
+!Rxvt*background: #212121
+!Rxvt*foreground: #D2C5BC
+!!#D2C5BC
+!!black
+!Rxvt*color0:#777777
+!Rxvt*color8:#777777
+!!red
+!Rxvt*color1:#a19488
+!Rxvt*color9:#a19488
+!!green
+!URxvt*color2:#88a194
+!URxvt*color10:#88a194
+!!yellow
+!URxvt*color3:#95a188
+!URxvt*color11:#95a188
+!!blue
+!URxvt*color4:#9488a1
+!URxvt*color12:#9488a1
+!!magenta
+!URxvt*color5:#a18895
+!URxvt*color13:#a18895
+!!cyan
+!URxvt*color6:#8895a1
+!URxvt*color14:#8895a1
+!!white
+!URxvt*color7:#d9d9d9
+!URxvt*color15:#d9d9d9
+!
+
+! Полоса прокрутки
+! URxvt.scrollBar: false
+!  Фон
+! Rxvt*background: #353C58
+!  Цвет текста
+! URxvt*foreground: #F0F0F0
+!  Цветовая схема
+! URxvt*color0:    #262D3F
+! URxvt*color8:     #6f7885
+! URxvt*color1:    #FFC4B0
+! URxvt*color9:      #F59363
+! URxvt*color2:    #AFDACC
+! URxvt*color10:    #AFDACC
+! URxvt*color3:  #F9E0AB
+! URxvt*color11: #F0D878
+! URxvt*color4:     #DE846C
+! URxvt*color12:     #D56E7C
+! URxvt*color5:    #A1F9B1
+! URxvt*color13:    #A1F9B1
+! URxvt*color6:    #9DC2B9
+! URxvt*color14:    #9DC2B9
+! URxvt*color7:     #F0F0F0
+! URxvt*color15:     #F0F0F0
+!  Шрифт и его размер
+! URxvt.font: xft:Monospace:size=14
+!  Мерцание курсора 
+! URxvt.cursorBlink: 1
+!  Активные интернет-ссылки
+! URxvt.perl-ext-common: default,matcher
+! URxvt.url-launcher: /usr/bin/xdg-open
+! URxvt.matcher.button: 1
+
+
+! Normal
+! color0    BLACK
+! color1    red
+! color2    green
+! color3    yellow
+! color4    blue (синий)
+! color5    purple (фиолетовый)
+! color6    cyan (голубой)
+! color7    white
+
+!urxvt*color0:    #000000
+urxvt*color0:    #241738
+urxvt*color1:    #C00000
+urxvt*color2:    #00C000
+urxvt*color3:    #C0C000
+urxvt*color4:    #0C00C0
+urxvt*color5:    #AA00AA
+urxvt*color6:    #00AAAA
+urxvt*color7:    #FFFFFF
+
+! Light
+! color8    darkgray
+! color9    red
+! color10    green
+! color11    yellow
+! color12    blue (синий)
+! color13    purple (фиолетовый)
+! color14    cyan (голубой)
+! color15    lightgray
+
+urxvt*color8:    #212121
+urxvt*color9:    #FF8080
+urxvt*color10:    #80FF80
+urxvt*color11:    #FFFF88
+!urxvt*color12:    #99CCFF
+urxvt*color12:    #FFFFFF
+urxvt*color13:    #B14CC2
+urxvt*color14:    #9BFFFF
+urxvt*color15:    #D0D0D0
+
+Rxvt*background: #241738
+
+
+!URxvt.font:     xft:bitstream vera sans mono:size=16:antialias=true
+URxvt.font:     xft:Monospace:size=11
+URxvt.boldFont: xft:Monospace:size=14:style=bold
+
+!URxvt.boldFont: xft:bitstream vera sans mono:bold:size=16:antialias=true
+
+!URxvt.letterSpace: -3
+
+URxvt*background: #212121
+URxvt*foreground: #C0C0C0
+
+URxvt*scrollBar: false
+
+URxvt.internalBorder:  0
+
+
