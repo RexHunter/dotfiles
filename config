@@ -45,6 +45,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # Set language layout
 exec --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
 
+# Setup wallpapers
+exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/beautiful-mountains-wallpaper-1920x1080.jpg
+
 # Start network manager
 exec --no-startup-id nm-applet
 
@@ -58,12 +61,32 @@ bindsym $mod+Shift+q kill
 
 # start roffi drun (a program launcher)
 bindsym $mod+o exec rofi -show drun -lines 3 
+bindsym $mod+shift+o exec rofi -show window -lines 3 
 
 # Make the currently focused window a scratchpad 
-bindsym $mod+Shift+minus [class="Gnome-terminal"] move scratchpad
+#bindsym $mod+Shift+minus [class="Gnome-terminal"] move scratchpad
 
 # Show the Gnome-terminal scratchpad window
-bindsym $mod+minus [class="Gnome-terminal"] scratchpad show
+#bindsym $mod+minus [class="Gnome-terminal"] scratchpad show
+
+exec --no-startup-id rxvt -name drop_down
+
+bindsym $mod+minus [instance="drop_down"] scratchpad show
+#for_window [instance="metask"] floating enable;
+for_window [instance="drop_down"] move scratchpad
+for_window [instance="drop_down"] scratchpad show
+
+bindsym $mod+space scratchpad show
+
+for_window [title="Google Keep"] move scratchpad
+for_window [title="Google Keep"] scratchpad show
+
+for_window [title="pgAdmin 4"] move scratchpad
+for_window [title="pgAdmin 4"] move show
+
+
+#bindsym $mod+minus [instance="metask"] scratchpad show
+#bindsym $mod+Shift+minus scratchpad show
 
 # Show the Google Keep scratchpad window
 #bindsym $mod+equal [title="Google Keep"] scratchpad show
@@ -71,10 +94,8 @@ bindsym $mod+minus [class="Gnome-terminal"] scratchpad show
 #for_window [title="Google Keep"] move scratchpad
 #for_window [title="Google Keep"] scratchpad show
 
-
 for_window [title="Google Play Music Desktop Player"] move scratchpad
 for_window [title="Google Play Music Desktop Player"] scratchpad show
-
 
 # Show the Terminal scratchpad window
 
@@ -169,13 +190,20 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+#bingsym $mod+Shift+p move container to output HDMI-0
+#bingsym $mod+Shift+p move container to output HDMI-0
+
+bindsym $mod+Shift+greater move container to output right; focus right
+bindsym $mod+Shift+less move container to output left; focus left
+
 
 # set applications workspaces
 assign [class="Google-chrome"] $workspace2
